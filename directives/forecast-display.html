@@ -1,0 +1,17 @@
+<table class="forecast-table">
+    <tr>
+        <th>Day</th>
+        <th>Max Temp</th>
+        <th>Min Temp</th>
+        <th>Expect</th>
+        <th>How Much?</th>
+    </tr>
+
+    <tr ng-repeat="result in weatherList">
+        <td>{{formatDate({adate: result.dt_txt})}}</td>
+        <td>{{formatTemperature({aTemp: result.main.temp_max})}}&deg</td>
+        <td>{{formatTemperature({aTemp: result.main.temp_min})}}&deg</td>
+        <td>{{result.weather[0].main}}</td>
+        <td>{{result.weather[0].description}}</td>
+    </tr>
+</table>

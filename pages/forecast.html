@@ -1,0 +1,21 @@
+<a href="#/">Back To Search</a>
+
+<h1>Weather for {{ city }}</h1>
+
+<h4>Amount Of Results: <a ng-class="{'bg-primary': resultsToReturn == 5}" href="#!/forecast/5">5</a> | <a ng-class="{'bg-primary': resultsToReturn == 10}" href="#!/forecast/10">10</a> | <a ng-class="{'bg-primary': resultsToReturn == 20}" href="#!/forecast/20">20</a> | <a ng-class="{'bg-primary': resultsToReturn == 40}" href="#!/forecast/40">40</a></h4>
+<div>
+    <input type="text" ng-model="resultsToReturn" />
+    <button class='btn-show-more-results'><a ng-if="(resultsToReturn <= 40 && resultsToReturn >= 1)" href="#!/forecast/{{resultsToReturn}}">Go!</a><a ng-if="!(resultsToReturn <= 40 && resultsToReturn >= 1)">Goss!</a></button>
+    <div class="alert" ng-class="{'alert-danger': (resultsToReturn>40 || resultsToReturn<1)}">
+        <div ng-show="resultsToReturn > 40">
+            <p>Max result is 40!</p>
+        </div>
+        <div ng-show="resultsToReturn < 1">
+            <p>Enter at least 1</p>
+        </div>
+    </div>
+</div>
+
+<forecast-display weather-list="weatherList" format-date="formatDate(adate)" format-temperature="formatTemperature(aTemp)" }>
+
+</forecast-display>
