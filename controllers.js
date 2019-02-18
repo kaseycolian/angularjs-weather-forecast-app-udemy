@@ -2,7 +2,7 @@
 weatherApp.controller('mainController', ['$scope', 'cityService', '$location', function ($scope, cityService, $location) {
     $scope.city = 'Salem, OH';
 
-    $scope.$watch('city', function () {
+    $scope.$watch('city', () => {
         cityService.city = $scope.city
     })
 
@@ -11,10 +11,12 @@ weatherApp.controller('mainController', ['$scope', 'cityService', '$location', f
     };
  }]);
 
-weatherApp.controller('forecastController', ['$scope', 'cityService', '$filter', '$routeParams', '$templateCache', 'weatherService', function ($scope, cityService, $filter, $routeParams, $templateCache, weatherService) {
+weatherApp.controller('forecastController', ['$scope', 'cityService', '$filter', '$routeParams', '$templateCache', 'weatherService', '$location', function ($scope, cityService, $filter, $routeParams, $templateCache, weatherService, $location) {
     $scope.city = cityService.city;
     $scope.resultsToReturn = parseInt($routeParams.count || 10);
-    $scope.apiUrl = 'http://api.openweathermap.org/data/2.5/forecast?q=' + $scope.formattedCity + '&mode=json&units=imperial&APPID=' + $scope.apiKey;
+
+    $scope.maxResults = 40;
+    $scope.minResults = 1;
 
     $scope.formattedCity = $scope.city.split(',')[0];
 
@@ -35,5 +37,10 @@ weatherApp.controller('forecastController', ['$scope', 'cityService', '$filter',
             return $scope.weatherList
         })
 
+    $scope.submit = () => {
+        if ($scope.resultsToReturn >= $scope.minResults && $scope.resultsToReturn <= $scope.maxResults) {
+            $location.path('/forecast/' + $scope.resultsToReturn)
+        }
+    }
 
 }])

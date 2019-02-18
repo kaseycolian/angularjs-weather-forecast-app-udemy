@@ -1,5 +1,5 @@
 // DIRECTIVES
-weatherApp.directive('forecastDisplay', function () {
+weatherApp.directive('forecastDisplay', () => {
     return {
         restrict: 'E',
         templateUrl: 'directives/forecast-display.html',

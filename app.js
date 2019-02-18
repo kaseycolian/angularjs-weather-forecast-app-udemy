@@ -1,1 +1,1 @@
-var weatherApp = angular.module('angularJSWeatherApp', ['ngResource', 'ngRoute', 'ngSanitize']);
+const weatherApp = angular.module('angularJSWeatherApp', ['ngResource', 'ngRoute', 'ngSanitize']);
